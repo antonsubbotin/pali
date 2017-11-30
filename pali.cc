@@ -134,15 +134,20 @@ void Method(const FunctionCallbackInfo<Value>& args) {
   Array *primes;
   Result *result;
 
+  // Perform the operation
   primes = get_primes(args[0]->NumberValue());
   result = get_pali(primes);
 
-  // Perform the operation
-  long value = result->prod;
+  Local<Number> prod = Number::New(isolate, result->prod);
+  Local<Number> f1 = Number::New(isolate, result->f1);
+  Local<Number> f2 = Number::New(isolate, result->f2);
 
-  Local<Number> num = Number::New(isolate, value);
+  Local<Object> obj = Object::New(isolate);
+  obj->Set(String::NewFromUtf8(isolate, "prod"), prod);
+  obj->Set(String::NewFromUtf8(isolate, "f1"), f1);
+  obj->Set(String::NewFromUtf8(isolate, "f2"), f2);
 
-  args.GetReturnValue().Set(num);
+  args.GetReturnValue().Set(obj);
 }
 
 void init(Local<Object> exports) {
