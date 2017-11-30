@@ -1,5 +1,6 @@
 #include <node.h>
 #include <stdlib.h>
+#include <stdio.h>
 #include <math.h>
 
 namespace demo {
@@ -14,7 +15,7 @@ using v8::Value;
 using v8::Number;
 
 // -----------------------
-// long get_pali(int digits);
+// long long get_pali(int digits);
 
 typedef struct {
 	int *array;
@@ -22,7 +23,7 @@ typedef struct {
 } Array;
 
 typedef struct {
-	long int prod;
+	long long prod;
 	int f1, f2;
 } Result;
 
@@ -30,7 +31,7 @@ typedef struct {
 // typedef struct result_struct Result;
 
 // void print_time_spent(clock_t clocks, char *str);
-char is_pali(long int num);
+char is_pali(long long num);
 
 Array *get_primes(int max);
 Result *get_pali(Array *primes);
@@ -73,13 +74,13 @@ Result *get_pali(Array *primes)
 {
 	Result *result = (Result *) malloc(sizeof(Result));
 
-	long int	prod 		= 0,
-				max_pali 	= 0;
+	long long prod = 0;
+	long long max_pali = 0;
 	int f1, f2;
 
 	for (int i = 0; i < primes->len; i++) {
 		for (int j = i; j < primes->len; j++) {
-			prod = (long int) primes->array[i] * primes->array[j];
+			prod = (long long) primes->array[i] * primes->array[j];
 			if ( is_pali(prod) ) {
 				if (prod > max_pali) {
 					max_pali = prod;
@@ -98,10 +99,10 @@ Result *get_pali(Array *primes)
 	return result;
 }
 
-char is_pali(long int num)
+char is_pali(long long num)
 {	
-	long int rev = 0;
-    long int buf = num;
+	long long rev = 0;
+    long long buf = num;
 
 	do {
 		rev = rev * 10 + buf % 10;
@@ -156,9 +157,9 @@ void init(Local<Object> exports) {
 
 NODE_MODULE(NODE_GYP_MODULE_NAME, init)
 
-/*long get_pali(int digits = 4)
+/*long long get_pali(int digits = 4)
 {
-	return (long) digits * digits;
+	return (long long) digits * digits;
 }
 */
 }  // namespace demo
