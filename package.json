@@ -1,0 +1,25 @@
+{
+  "name": "pali",
+  "version": "1.0.0",
+  "description": "",
+  "main": "test.js",
+  "dependencies": {
+    "node-gyp": "^3.6.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "install": "node-gyp rebuild"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/antonsubbotin/pali.git"
+  },
+  "author": "Anton Subbotin",
+  "license": "ISC",
+  "gypfile": true,
+  "bugs": {
+    "url": "https://github.com/antonsubbotin/pali/issues"
+  },
+  "homepage": "https://github.com/antonsubbotin/pali#readme"
+}
